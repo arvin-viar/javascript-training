@@ -1,29 +1,45 @@
-const hour = document.querySelector('.hand--hour');
-const minute = document.querySelector('.hand--minute');
-const second = document.querySelector('.hand--second');
+const hourHand = document.querySelector('.hand--hour');
+const minuteHand = document.querySelector('.hand--minute');
+const secondHand = document.querySelector('.hand--second');
 
+const disableElementTransition = elm => {
+    elm.style.transition = `none`;
+}
+const enableElementTransition = elm => {
+    elm.style.transition = `all 0.3s ease`;
+}
 const moveClockHand = (h = 0, m = 0, s = 0) => {
-    // additional deg for hour, base on minutes accumulated
-    const minPer = m/60;
-    const addHrsDeg = (5 * minPer) * 6;
-    const hourStyle = {
-        transform: `rotate(${((h * 5) * 6) + addHrsDeg + 90}deg)`
+    // Remove transition to avoid hand reverse animation
+    if (s === 0) {
+        disableElementTransition(secondHand);
+        setTimeout(() => {
+            enableElementTransition(secondHand);
+        }, 1000);
     }
-    const minuteStyle = {
-        transform: `rotate(${m * 6 + 90}deg)`
+    if (m === 0) {
+        disableElementTransition(minuteHand);
+        setTimeout(() => {
+            enableElementTransition(minuteHand);
+        }, 1000);
     }
-    const secondStyle = {
-        transform: `rotate(${s * 6 + 90}deg)`
+    if (h === 0 || h === 12) {
+        disableElementTransition(hourHand);
+        setTimeout(() => {
+            enableElementTransition(hourHand);
+        }, 1000);
     }
-    Object.assign(hour.style, hourStyle);
-    Object.assign(minute.style, minuteStyle);
-    Object.assign(second.style, secondStyle);
+
+    const minPercentageCycle = (m/60) * 30; // additional deg for hour, base on minutes accumulated
+
+    hourHand.style.transform = `rotate(${((h/12) * 360) + 90 + minPercentageCycle}deg)`;
+    minuteHand.style.transform = `rotate(${((m/60) * 360) + 90}deg)`;
+    secondHand.style.transform = `rotate(${((s/60) * 360) + 90}deg)`;
 }
 
 window.setInterval(() => {
-    const date = new Date;
-    const sec = date.getSeconds();
-    const min = date.getMinutes();
-    const hrs = date.getHours();
+    const now = new Date;
+    const sec = now.getSeconds();
+    const min = now.getMinutes();
+    const hrs = now.getHours();
     moveClockHand(hrs, min, sec);
 }, 1000);
