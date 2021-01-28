@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Javascript Drum Kit</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="drum">
+        <div class="drum__item" data-key="a">
+            <label for="">A</label>
+            <span>clap</span>
+        </div>
+        <div class="drum__item" data-key="s">
+            <label for="">S</label>
+            <span>hihat</span>
+        </div>
+        <div class="drum__item" data-key="d">
+            <label for="">D</label>
+            <span>kick</span>
+        </div>
+        <div class="drum__item" data-key="f">
+            <label for="">F</label>
+            <span>openhat</span>
+        </div>
+        <div class="drum__item" data-key="g">
+            <label for="">G</label>
+            <span>boom</span>
+        </div>
+        <div class="drum__item" data-key="h">
+            <label for="">H</label>
+            <span>ride</span>
+        </div>
+        <div class="drum__item" data-key="j">
+            <label for="">J</label>
+            <span>snare</span>
+        </div>
+        <div class="drum__item" data-key="k">
+            <label for="">K</label>
+            <span>tom</span>
+        </div>
+        <div class="drum__item" data-key="l">
+            <label for="">L</label>
+            <span>tink</span>
+        </div>
+    </div>
+
+    <div class="sounds">
+        <audio class="audio" data-key="a" src="sounds/clap.wav" autoplay></audio>
+        <audio class="audio" data-key="s" src="sounds/hihat.wav" autoplay></audio>
+        <audio class="audio" data-key="d" src="sounds/kick.wav" autoplay></audio>
+        <audio class="audio" data-key="f" src="sounds/openhat.wav" autoplay></audio>
+        <audio class="audio" data-key="g" src="sounds/boom.wav" autoplay></audio>
+        <audio class="audio" data-key="h" src="sounds/ride.wav" autoplay></audio>
+        <audio class="audio" data-key="j" src="sounds/snare.wav" autoplay></audio>
+        <audio class="audio" data-key="k" src="sounds/tom.wav" autoplay></audio>
+        <audio class="audio" data-key="l" src="sounds/tink.wav" autoplay></audio>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
