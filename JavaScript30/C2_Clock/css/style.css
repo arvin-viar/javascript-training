@@ -1,0 +1,93 @@
+html, body, h1, h2, h3, h4, h5, ul, ol, li, p, a, figure {
+	margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+html, body {
+    height: 100%;
+}
+* {
+    box-sizing: border-box;
+}
+ul, ol, li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+img {
+    display: block;
+    max-width: 100%;
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url(../images/TechBG.jpg) no-repeat center center;
+    background-size: cover;
+}
+.clock {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border: 5px solid #607d8b;
+    border-radius: 50%;
+    background: #071938;
+}
+.clock span {
+    position: absolute;
+    color: #ffffff;
+    font-size: 25px;
+}
+.clock__hand {
+    position: absolute;
+    right: 50%;
+    bottom: 50%;
+    width: 40%;
+    height: 3px;
+    background: #1bfcfe;
+    transform-origin: 100%;
+    transition: all 0.3s ease;
+}
+.hand--hour {
+    width: 30%;
+    height: 3px;
+    background-color: #3afcfc;
+}
+.hand--minute {
+    height: 2px;
+    background-color: #31cee8;
+}
+.hand--second {
+    height: 1px;
+    background-color: #1297d1;
+}
+.clock--twelve {
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.clock--three {
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+}
+.clock--nine {
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+}
+.clock--six {
+    left: 50%;
+    bottom: 5px;
+    transform: translateX(-50%);
+}
+
+
+
+
+
+
+
+
