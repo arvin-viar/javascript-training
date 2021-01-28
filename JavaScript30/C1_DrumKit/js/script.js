@@ -1,37 +1,44 @@
-const drums = document.querySelectorAll('.drum__item');
-const audios = document.querySelectorAll('.sounds audio');
+/*
+    Notes: Updated after watching wesbos tutorial
+        1. I used event.key, to easily identify the key instead of event.keyCode
+        2. I added click event to the drum item
+        3. I convert key to lower case string to handle capital key
+*/
 
-const playAndToggleDrum = key => {
-    drums.forEach(drum => {
-        if (drum.dataset.key === key) {
-            drum.classList.toggle('clicked');
-            setTimeout(() => {
-                drum.classList.remove('clicked');
-            }, 500);
-        }
-    });
-    audios.forEach(audio => {
-        if (audio.dataset.key === key) {
-            audio.load();
-            audio.play();
-        }
-    });
+// function to play sound
+const playSound = key => {
+    const audio = document.querySelector(`audio[data-key="${key.toLowerCase()}"]`);
+    const drum = document.querySelector(`.drum__item[data-key="${key.toLowerCase()}"]`);
+    // Return if no audio match
+    if(!audio) return;
+    // Play Audio
+    audio.load();
+    audio.play();
+    // Element Transition
+    drum.classList.add('clicked');
+};
+
+// Reset drum
+function resetDrum(event) {
+    if (event.propertyName !== 'transform') return;
+    this.classList.remove('clicked');
 }
 
-// Apply Event Listener to Drum Item
+// Select all drum element
+const drums = document.querySelectorAll('.drum__item');
+// Catch transition end
+drums.forEach(drum => drum.addEventListener('transitionend', resetDrum));
+
+// Add eventListener click to drum element
 drums.forEach(drum => {
     drum.addEventListener('click', event => {
-        let dataKey;
-        if (event.target.classList.contains('drum__item')) {
-            dataKey = event.target.dataset.key;
-        } else {
-            dataKey = event.target.parentElement.dataset.key;
-        }
-        playAndToggleDrum(dataKey);
+        playSound(
+            event.target.classList.contains('drum__item') ? 
+            event.target.dataset.key : 
+            event.target.parentElement.dataset.key
+        );
     });
 });
 
-// Key Press
-document.onkeypress = function (event) {
-    playAndToggleDrum(event.key);
-};
+// Add eventListener to key
+window.addEventListener('keydown', event => playSound(event.key));
