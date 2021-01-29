@@ -7,14 +7,19 @@ html, body, h1, h2, h3, h4, h5, ul, ol, li, p, a, figure {
 * {
     box-sizing: border-box;
 }
-:root {
-    --base: #aaaaaa;
-    --spacing: 10px;
-    --blur: 0px;
+ul, ol, li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
 }
 img {
     display: block;
     max-width: 100%;
+}
+.container {
+    max-width: 1024px;
+    margin: 0 auto;
 }
 html, body, main {
     height: 100%;
@@ -34,10 +39,10 @@ main {
     padding: 25px 15px;
 }
 .css-var__content {
-    background: var(--base);
+    position: relative;
+    overflow: hidden;
+    background: blue;
 }
 .css-var__content img {
     width: 100%;
-    padding: var(--spacing);
-    filter: blur(var(--blur));
 }
