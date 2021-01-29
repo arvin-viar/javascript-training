@@ -1,0 +1,43 @@
+html, body, h1, h2, h3, h4, h5, ul, ol, li, p, a, figure {
+	margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+* {
+    box-sizing: border-box;
+}
+:root {
+    --base: #aaaaaa;
+    --spacing: 10px;
+    --blur: 0px;
+}
+img {
+    display: block;
+    max-width: 100%;
+}
+html, body, main {
+    height: 100%;
+}
+main {
+    display: flex;
+    background: #058c94;
+}
+.css-var {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.css-var__controls {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 25px 15px;
+}
+.css-var__content {
+    background: var(--base);
+}
+.css-var__content img {
+    width: 100%;
+    padding: var(--spacing);
+    filter: blur(var(--blur));
+}
