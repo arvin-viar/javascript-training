@@ -30,52 +30,53 @@ const people = [
     
 // Array.prototype.filter()
 // 1. Filter the list of inventors for those who were born in the 1500's
-const bornInFifteenHundreds = inventors.filter(item => item.year >= 1500 && item.year < 1600);
-console.table(bornInFifteenHundreds);
+const bornInFifteenHundreds = inventors.filter(item => {
+    return item.year >= 1500 && item.year < 1600;
+});
+console.log(bornInFifteenHundreds);
 
 // Array.prototype.map()
 // 2. Give us an array of the inventors first and last names
-const inventorNames = inventors.map(item => `${item.first} ${item.last}`);
-console.table(inventorNames);
+const inventorNames = inventors.map(item => {
+    return {
+        first: item.first,
+        last: item.last
+    };
+});
+console.log(inventorNames);
 
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest
-const sortedOldestToYoungest = inventors.sort((a, b) => a.year - b.year);
-console.table(sortedOldestToYoungest);
+const sortedOldestToYoungest = inventors.sort((a, b) => {
+    return a.year - b.year;
+});
+console.log(sortedOldestToYoungest);
 
 // Array.prototype.reduce()
 // 4. How many years did all the inventors live all together?
-const yearsLived = inventors.reduce((total, inventor) => {
-    return total + (inventor.passed - inventor.year);
-}, 0);
-console.log(`Total Years Lived: ${yearsLived}`);
+const yearsLived = inventors.reduce((a, b) => {
+    if (isNaN(a)) {
+        return (a.passed - a.year ) + (b.passed - b.year);
+    }
+    return a + (b.passed - b.year);
+});
+console.log(yearsLived);
 
 // 5. Sort the inventors by years lived
 const sortedByYearsLived = inventors.sort((a, b) => {
     const aYears = a.passed - a.year;
     const bYears = b.passed - b.year;
-    return aYears > bYears ? -1 : 1;
+    return aYears - bYears;
 });
-console.table(sortedByYearsLived);
+console.log(sortedByYearsLived);
 
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
 // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
-// let parisBoulevards = document.querySelector('.mw-category');
-// let links = parisBoulevards.querySelectorAll('a'); 
-// let arrLinks = Array.from(links); // let arrLinks = [...links]; // convert nodelist to array using spread (...)
-// let mappedLinks = arrLinks
-//                     .map(link => link.textContent)
-//                     .filter(street => street.includes('de'));
-
 
 // 7. sort Exercise
 // Sort the people alphabetically by last name
-const sortPeopleByLastname = people.sort((lastPerson, nextPerson) => {
-    const [lpLast] = lastPerson.split(', ');
-    const [npLast] = nextPerson.split(', ');
-    return lpLast > npLast ? 1 : -1; 
-});
+const sortPeopleByLastname = people.sort();
 console.log(sortPeopleByLastname);
 
 // 8. Reduce Exercise
@@ -89,5 +90,5 @@ let instances = data.reduce(function (allInstance, instance) {
         allInstance[instance] = 1
     }
     return allInstance
-  }, {});
+  }, {})
 console.log(instances);
