@@ -1,11 +1,15 @@
 const gallery = document.querySelector('.gallery');
 const galleryItems = gallery.querySelectorAll('.gallery__item');
 
-// Click Function
-function openGalleryItem (event) {
-    const galleryItem = event.currentTarget;
-    galleryItems.forEach(galleryItem => galleryItem.classList.remove('open'));
-    galleryItem.classList.add('open');
+function toggleOpen () {
+    this.classList.toggle('open');
 }
 
-galleryItems.forEach(galleryItem => galleryItem.addEventListener('click', openGalleryItem));
+function toggleActive (event) {
+    if (event.propertyName.includes('flex')) {
+        this.classList.toggle('active');
+    } 
+}
+
+galleryItems.forEach(galleryItem => galleryItem.addEventListener('click', toggleOpen));
+galleryItems.forEach(galleryItem => galleryItem.addEventListener('transitionend', toggleActive));

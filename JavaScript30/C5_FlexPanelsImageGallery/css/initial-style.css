@@ -25,10 +25,7 @@ html, body, main {
     flex-direction: column;
     background-size: cover;
     background-position: center;
-    font-size: 20px;
-    transition:
-        font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
-        flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11);
+    transition: transform 0.5s;
 }
 .item--1 { background-image:url(https://picsum.photos/1000/1000); }
 .item--2 { background-image:url(https://picsum.photos/1001/1000); }
@@ -43,13 +40,14 @@ html, body, main {
     width: 100%;
     margin: 0;
     color: #ffffff;
-    font-size: 1em;
+    font-size: 2em;
     text-transform: uppercase;
     text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
     transition: transform 0.5s;
 }
-.gallery__item p:nth-child(2) {
-    font-size: 2em;
+.gallery__item p:first-child,
+.gallery__item p:last-child {
+    font-size: 1.4em;
 }
 .gallery__item p:first-child {
     transform: translateY(-100%);
@@ -58,10 +56,9 @@ html, body, main {
     transform: translateY(100%);
 }
 .gallery__item.open {
-    flex: 3;
-    font-size: 40px;
+    flex-grow: 3;
 }
-.gallery__item.open.active p:first-child,
-.gallery__item.open.active p:last-child {
+.gallery__item.open p:first-child,
+.gallery__item.open p:last-child {
     transform: translateY(0);
 }
