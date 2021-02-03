@@ -1,0 +1,61 @@
+html, body, h1, h2, h3, h4, h5, ul, ol, li, p, a, figure {
+	margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+* {
+    box-sizing: border-box;
+}
+ul, ol, li {
+    list-style: none;
+}
+form input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 2px;
+    margin-bottom: 5px;
+}
+.hl {
+    background: #f9e653;
+}
+html, body, main {
+    height: 100%;
+}
+
+main {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 50px;
+    overflow: auto;
+}
+.form_wrap {
+    position: relative;
+    min-width: 300px;
+}
+.ajax-form__input {
+    margin-bottom: 0;
+    font-size: 40px;
+    text-align: center;
+    border: 10px solid #F7F7F7;
+    border-radius: 5px;
+}
+.ajax-form__suggestions {
+    background: #ffffff;
+}
+.ajax-form__suggestions li {
+    padding: 10px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #D8D8D8;
+}
+.ajax-form__suggestions p {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+.ajax-form__suggestions-population {
+    font-size: 12px;
+}
