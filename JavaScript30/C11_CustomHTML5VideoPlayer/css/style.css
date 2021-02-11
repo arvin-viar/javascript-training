@@ -1,0 +1,49 @@
+html, body, h1, h2, h3, h4, h5, ul, ol, li, p, a, figure {
+	margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+* {
+    box-sizing: border-box;
+}
+ul, ol, li {
+    list-style: none;
+}
+.hl {
+    background: #f9e653;
+}
+html, body, main {
+    height: 100%;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.video-player {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 700px;
+}
+.video-player__video {
+    width: 100%;
+}
+.video-player__controls {
+    display: flex;
+    justify-content: space-between;
+}
+.video-player__controls button {
+    width: 20px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    border: none;
+    background: none;
+}
+.video-player__controls input {
+    flex: 1;
+}
