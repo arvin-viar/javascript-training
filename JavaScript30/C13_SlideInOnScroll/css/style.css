@@ -1,0 +1,88 @@
+html, body, h1, h2, h3, h4, h5, ul, ol, li, p, a, figure {
+	margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+* {
+    box-sizing: border-box;
+}
+ul, ol, li {
+    list-style: none;
+}
+form input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 2px;
+    margin-bottom: 5px;
+}
+.hl {
+    background: #f9e653;
+}
+html, body, main {
+    height: 100%;
+}
+
+main {
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh; */
+}
+
+html {
+  box-sizing: border-box;
+  background: #ffc600;
+  font-family: 'helvetica neue';
+  font-size: 20px;
+  font-weight: 200;
+}
+
+body {
+  margin: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.site-wrap {
+  max-width: 700px;
+  margin: 100px auto;
+  background: white;
+  padding: 40px;
+  text-align: justify;
+}
+
+.align-left {
+  float: left;
+  margin-right: 20px;
+}
+
+.align-right {
+  float: right;
+  margin-left: 20px;
+}
+
+.slide-in {
+  opacity: 0;
+  transition: all .5s;
+}
+
+.align-left.slide-in {
+  transform: translateX(-30%) scale(0.95);
+}
+
+.align-right.slide-in {
+  transform: translateX(30%) scale(0.95);
+}
+
+.slide-in.active {
+  opacity: 1;
+  transform: translateX(0%) scale(1);
+}
