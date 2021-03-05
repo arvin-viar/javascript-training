@@ -15,7 +15,7 @@ ul, ol, li {
     list-style: none;
 }
 form input {
-  /* width: 100%; */
+  width: 100%;
   padding: 8px;
   border-radius: 2px;
   margin-bottom: 5px;
