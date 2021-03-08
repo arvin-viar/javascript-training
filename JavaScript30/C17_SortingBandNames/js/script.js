@@ -29,13 +29,12 @@ function renderList(data) {
     .join('');
 }
 
+function strip(name) {
+  return name.replace(/(a |the |an )/i, '');
+}
+
 function sortArray(arr) {
-  const sortedArray = arr.sort((a, b) => {
-    const regex = new RegExp(/(a |the |an )/i);
-    const stripA = a.replace(regex, '');
-    const stripB = b.replace(regex, '');
-    return stripA > stripB ? 1 : -1;
-  });
+  const sortedArray = arr.sort((a, b) => (strip(a) > strip(b) ? 1 : -1));
   renderList(sortedArray);
 }
 
