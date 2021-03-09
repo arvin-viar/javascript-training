@@ -68,7 +68,7 @@ function greenScreen(pixels) {
   return pixels;
 }
 
-function paintToCanvas() {
+function paintToCanvas(effect = 'none') {
   const width = video.videoWidth;
   const height = video.videoHeight;
   canvas.width = width;
@@ -77,15 +77,24 @@ function paintToCanvas() {
   return setInterval(() => {
     ctx.drawImage(video, 0, 0, width, height);
     let pixels = ctx.getImageData(0, 0, width, height);
-    // red effect
-    // pixels = redEffect(pixels);
 
-    // rainbow effect
-    // pixels = rgbSplit(pixels);
-    // ctx.globalAlpha = 0.8;
-
-    // green screen effect
-    pixels = greenScreen(pixels);
+    switch (effect) {
+      case 'rgbspliteffect':
+        // rainbow effect
+        pixels = rgbSplit(pixels);
+        ctx.globalAlpha = 0.8;
+        break;
+      case 'redeffect':
+        // red effect
+        pixels = redEffect(pixels);
+        break;
+      case 'greeeneffect':
+        // green screen effect
+        pixels = greenScreen(pixels);
+        break;
+      default:
+        break;
+    }
 
     ctx.putImageData(pixels, 0, 0);
   }, 16);
@@ -100,6 +109,13 @@ function takePhoto() {
   link.setAttribute('download', 'handsome');
   link.innerHTML = `<img src="${data}" alt="Handsome Man" />`;
   strip.insertBefore(link, strip.firstChild);
+}
+
+function applyEffect(effect) {
+  console.log(effect);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  getVideo();
+  paintToCanvas(effect);
 }
 
 getVideo();
