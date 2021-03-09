@@ -12,13 +12,30 @@ let paragraph = document.createElement('p');
 const words = document.querySelector('.words');
 words.appendChild(paragraph);
 
+function applyEmoji(text) {
+  let newText = text;
+  if (text.includes('unicorn')) {
+    newText = newText.replace('unicorn', '🦄');
+  }
+  if (text.includes('apple')) {
+    newText = newText.replace('apple', '🍎');
+  }
+  if (text.includes('bug')) {
+    newText = newText.replace('bug', '🐛');
+  }
+  console.log(newText);
+  return newText;
+}
+
 recognition.addEventListener('result', (e) => {
   const transcript = Array.from(e.results)
     .map((result) => result[0])
     .map((result) => result.transcript)
     .join('');
 
-  paragraph.textContent = transcript;
+  const text = applyEmoji(transcript);
+
+  paragraph.textContent = text;
   if (e.results[0].isFinal) {
     paragraph = document.createElement('p');
     words.appendChild(paragraph);
