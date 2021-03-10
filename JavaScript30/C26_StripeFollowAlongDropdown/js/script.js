@@ -6,7 +6,8 @@ const links = Array.from(document.querySelectorAll('ul.cool > li'));
 const bgOverlay = document.querySelector('.dropdownBackground');
 
 function displayDropdown() {
-  this.classList.add('trigger-enter', 'trigger-enter-active');
+  this.classList.add('trigger-enter');
+  setTimeout(() => this.classList.contains('trigger-enter') && this.classList.add('trigger-enter-active'), 150);
 
   const coordinates = this.getBoundingClientRect();
   const dropdown = this.querySelector('.dropdown');
