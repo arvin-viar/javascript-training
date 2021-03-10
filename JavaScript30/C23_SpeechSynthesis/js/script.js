@@ -14,6 +14,7 @@ function setVoiceOptions() {
   voices = this.getVoices();
   // console.log(voices);
   const voiceOptions = voices
+    .filter((voice) => voice.lang.includes('en'))
     .map(
       (voice) => `
       <option value="${voice.name}">${voice.name} - ${voice.lang}</option>
@@ -23,31 +24,28 @@ function setVoiceOptions() {
   voicesDropdown.innerHTML = voiceOptions;
 }
 
-function speakMsg() {
-  speechSynthesis.speak(msg);
-}
-
-function quiet() {
+function toggleSpeak(startOver = true) {
   speechSynthesis.cancel();
+  if (startOver) {
+    speechSynthesis.speak(msg);
+  }
 }
 
 function triggerVoiceSelected() {
   console.log(this.value);
   msg.voice = voices.find((voice) => voice.name === this.value);
   console.log(msg);
-  quiet();
-  speakMsg();
+  toggleSpeak(true);
 }
 
 function setOption() {
   console.log(this.name, this.value);
   msg[this.name] = this.value;
-  quiet();
-  speakMsg();
+  toggleSpeak(true);
 }
 
 speechSynthesis.addEventListener('voiceschanged', setVoiceOptions);
 voicesDropdown.addEventListener('change', triggerVoiceSelected);
-speakButton.addEventListener('click', speakMsg);
-stopButton.addEventListener('click', quiet);
+speakButton.addEventListener('click', toggleSpeak);
+stopButton.addEventListener('click', () => toggleSpeak(false));
 options.forEach((option) => option.addEventListener('change', setOption));
