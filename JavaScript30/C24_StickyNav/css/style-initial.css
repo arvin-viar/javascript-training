@@ -63,7 +63,7 @@ nav {
   position: relative;
   z-index: 1;
 }
-.nav-fixed nav {
+nav.sticky {
   position: fixed;
 }
 
@@ -91,7 +91,7 @@ li.logo {
   font-size: 30px;
 }
 
-.nav-fixed nav li.logo {
+nav.sticky li.logo {
   max-width: 300px;
 }
 

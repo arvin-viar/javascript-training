@@ -8,9 +8,11 @@ const navOffsetTop = navigation.offsetTop;
 function stickyNav() {
   const windowScrollY = this.scrollY;
   if (navOffsetTop <= windowScrollY) {
-    navigation.classList.add('sticky');
+    document.body.style.paddingTop = `${navigation.offsetHeight}px`;
+    document.body.classList.add('nav-fixed');
   } else {
-    navigation.classList.remove('sticky');
+    document.body.style.paddingTop = 0;
+    document.body.classList.remove('nav-fixed');
   }
 }
 
