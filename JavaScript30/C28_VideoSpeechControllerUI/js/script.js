@@ -7,14 +7,13 @@ const bar = speed.querySelector('.speed-bar');
 const video = document.querySelector('.flex');
 
 function speedMove(e) {
-  console.log(e.offsetY, speed.offsetHeight);
-  const heightPercentage = Math.round((e.offsetY / speed.offsetHeight) * 100);
-  console.log(heightPercentage);
-  bar.style.height = `${heightPercentage}%`;
+  const y = e.pageY - this.offsetTop;
+  const percent = y / this.offsetHeight;
+  const height = `${Math.round(percent * 100)}%`;
   const min = 0.4;
   const max = 4;
-  const playbackRate = (e.offsetY / speed.offsetHeight) * (max - min) + min;
-  console.log(playbackRate);
+  const playbackRate = percent * (max - min) + min;
+  bar.style.height = height;
   bar.textContent = `${playbackRate.toFixed(2)}X`;
   video.playbackRate = playbackRate;
 }
