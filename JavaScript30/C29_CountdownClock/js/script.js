@@ -13,25 +13,25 @@ function displayTime(seconds) {
   time.textContent = `${minutes}:${remSecs < 10 ? `0${remSecs}` : remSecs}`;
 }
 
-function displayEndTime(seconds) {
-  const now = Date.now();
-  const end = new Date(now + seconds * 1000);
+function displayEndTime(timestamp) {
+  const end = new Date(timestamp);
   const hour = end.getHours();
   const minutes = end.getMinutes();
   endTime.textContent = `Be Back At ${hour % 12}:${minutes < 10 ? `0${minutes}` : minutes}`;
 }
 
 function timer(seconds) {
-  let remainingSeconds = seconds;
+  const now = Date.now();
+  const then = now + seconds * 1000;
   displayTime(seconds);
-  displayEndTime(seconds);
+  displayEndTime(then);
 
   countdown = setInterval(() => {
-    remainingSeconds -= 1;
-    if (remainingSeconds <= 0) {
+    const secondsLeft = Math.round((then - Date.now()) / 1000);
+    if (secondsLeft <= 0) {
       clearInterval(countdown);
     }
-    displayTime(remainingSeconds);
+    displayTime(secondsLeft);
   }, 1000);
 }
 
