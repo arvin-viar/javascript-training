@@ -9,6 +9,7 @@ const startBtn = document.querySelector('button');
 
 let gameOver = false;
 let points = 0;
+let lastHole;
 
 function randomTime(min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -16,7 +17,10 @@ function randomTime(min, max) {
 
 function randomHole() {
   const randomIndex = Math.floor(Math.random() * holes.length);
-  console.log(randomIndex);
+  if (lastHole === randomIndex) {
+    randomHole();
+  }
+  lastHole = randomIndex;
   return holes[randomIndex];
 }
 
@@ -42,6 +46,7 @@ function startGame(e) {
 }
 
 function whack(e) {
+  if (!e.isTrusted) return; // cheater!
   points++;
   e.target.parentElement.classList.remove('up');
   scoreBoard.textContent = points;
