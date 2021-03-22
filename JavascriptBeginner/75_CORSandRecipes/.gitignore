@@ -1,0 +1,11 @@
+.DS_Store
+.nvmrc
+.editorconfig
+.cache
+
+Thumbs.db
+
+node_modules
+dist
+
+npm-debug.log
