@@ -1,0 +1,65 @@
+html, body, h1, h2, h3, h4, h5, ul, ol, li, p, a, figure {
+	margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+ul, ol, li {
+  list-style: none;
+}
+form input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 2px;
+  margin-bottom: 5px;
+}
+html, body, main {
+  height: 100%;
+  box-sizing: border-box;
+}
+html {
+  font-size: 10px;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.groupofpeople {
+  display: flex;
+  width: 600px;
+  height: 600px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.person {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  transition: all 1s ease;
+  padding: 5px;
+  color: #000;
+  border-radius: 15px;
+}
+
+.alive {
+  color: #fff;
+  background-color: rgb(6, 233, 82);
+}
+
+.dead {
+  background-color: red;
+}
