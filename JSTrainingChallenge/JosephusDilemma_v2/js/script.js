@@ -4,51 +4,48 @@ const peopleContainer = document.querySelector('.groupofpeople');
 const purgeBtn = document.querySelector('.purge');
 const resetBtn = document.querySelector('.reset');
 const randomBtn = document.querySelector('.random');
+const inputNumber = document.querySelector('[name="participants"]');
 let currentData = [];
 let persons = [];
 
 function arrangeCircular() {
-  let type = 1,
-    radius = 5,
-    start = -90,
-    items = Array.from(document.querySelectorAll('.person')),
-    numberOfElements = (type === 1) ?  items.length : items.length - 1,
-    slice = 360 * type / numberOfElements;
+  const type = 1;
+  let radius = 5;
+  const start = -90;
+  const items = Array.from(document.querySelectorAll('.person'));
+  const numberOfElements = type === 1 ? items.length : items.length - 1;
+  const slice = (360 * type) / numberOfElements;
 
   radius = `${(items.length / 10) * radius}em`;
-  
-  items.forEach(function(el, i) {
-      var rotate = slice * i + start,
-          rotateReverse = rotate * -1;
-      el.style.transform = `rotate(${rotate}deg) translate(${radius}) rotate(${rotateReverse}deg)`;
+
+  items.forEach(function (el, i) {
+    const rotate = slice * i + start;
+    const rotateReverse = rotate * -1;
+    el.style.transform = `rotate(${rotate}deg) translate(${radius}) rotate(${rotateReverse}deg)`;
   });
 }
 
 function getDeathToll(people) {
   const isOdd = people.length % 2 !== 0;
   const data = [...people];
-  const alive = data.filter((person, idx) => {
-    return idx % 2 === 0;
-  });
-  const death = data.filter((person, idx) => {
-    return idx % 2 === 1;
-  });
+  const alive = data.filter((person, idx) => idx % 2 === 0);
+  const death = data.filter((person, idx) => idx % 2 === 1);
   if (isOdd) {
     alive.shift();
     death.push(data[0]);
   }
   return {
-    alive: alive,
-    death: death
-  };  
+    alive,
+    death,
+  };
 }
 
 function animateDelay(param) {
-  return new Promise((resolve)=>{
-    setTimeout(()=>{
-      resolve("Resolved" + param)
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`Resolved${param}`);
     }, param);
-  })
+  });
 }
 
 async function purge(people) {
@@ -87,17 +84,21 @@ function renderPeople(people) {
   arrangeCircular();
 }
 
+function generatePeople(peopleCount) {
+  const newData = [];
+  for (let x = 1; x <= peopleCount; x++) {
+    newData.push(`${x}`);
+  }
+  currentData = newData;
+  renderPeople(newData);
+}
+
 function randomData() {
   const randomNumber = Math.floor(Math.random() * 50);
-  const newData = [];
   if (randomNumber < 2) {
     randomData();
   } else {
-    for (let x = 1; x <= randomNumber; x++) {
-      newData.push(`${x}`);
-    }
-    currentData = newData;
-    renderPeople(newData);
+    generatePeople(randomNumber);
   }
 }
 
@@ -105,7 +106,14 @@ function resetPeople() {
   renderPeople(currentData);
 }
 
+function handleInput() {
+  const participants = this.value;
+  console.log(participants);
+  generatePeople(participants);
+}
+
 randomData();
 purgeBtn.addEventListener('click', startPurge);
 resetBtn.addEventListener('click', resetPeople);
 randomBtn.addEventListener('click', randomData);
+inputNumber.addEventListener('change', handleInput);
