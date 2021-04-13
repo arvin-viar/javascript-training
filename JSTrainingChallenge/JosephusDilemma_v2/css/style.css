@@ -63,3 +63,7 @@ main {
 .dead {
   background-color: red;
 }
+
+.inp-number {
+  min-width: 50px;
+}
